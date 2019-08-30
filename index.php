@@ -1,10 +1,26 @@
+<?php
+    $host = 'localhost';
+    $user = 'yorkit';
+    $password = '231';
+    $database = 'resume';
+
+    $conn = mysqli_connect($host, $user, $password, $database);
+    if ($conn->connect_error) {
+        die('Connection failed: ' . $conn->connect_error);
+    }
+
+    $sql = "SELECT first_name, last_name, career, address, date_of_birth, phone, mail, description FROM information";
+    $result = $conn->query($sql);
+    $information = $result->fetch_assoc();
+?>
+
 <!doctype html>
 <html class="no-js" lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Resume - Tran Tuan Anh</title>
+    <title>Resume - <?php echo $information["first_name"] . " " . $information["last_name"]?></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="resume-icon.jpg">
@@ -225,5 +241,4 @@
         </div>
     </div>
 </body>
-
 </html>
